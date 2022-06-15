@@ -46,8 +46,13 @@ class PdfController extends Controller
             $this->fpdf->Cell(35,8,'20', 1,0,'C',0);
             $this->fpdf->Cell(50,8,'40', 1,1,'C',0);
         }
-        $this->fpdf->Output();
-        exit;
+        // $this->fpdf->Output();
+        // exit;
+
+        $pdfFile =  $this->fpdf->Output("","S");
+        return response([
+            'data' => chunk_split(base64_encode($pdfFile))
+        ]);
     }
 
 

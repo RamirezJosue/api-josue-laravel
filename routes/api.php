@@ -22,4 +22,5 @@ Route::group(['api'], function() {
     Route::post('register', [RegisterController::class, 'store']);
     Route::resource('categories', CategoryController::class);
     Route::get('pdf', [PdfController::class, 'index']);
+    Route::get('export-category', [CategoryController::class, 'exportCategory']);
 });

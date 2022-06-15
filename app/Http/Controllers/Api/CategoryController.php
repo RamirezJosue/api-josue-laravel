@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Exports\ExportCategory;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller
 {
@@ -54,5 +56,10 @@ class CategoryController extends Controller
     {
         $category->delete();
         return CategoryResource::make($category);
+    }
+
+    public function exportCategory(Request $request)
+    {
+        return Excel::download(new ExportCategory, 'categories.xlsx');
     }
 }
